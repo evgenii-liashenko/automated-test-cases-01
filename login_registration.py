@@ -11,8 +11,8 @@ wait = WebDriverWait(driver, 10)
 from random import randint
 
 
-#TC-9   !!!  FLAKY TEST  !!!
-#регистрация аккаунта
+
+#TC-9 #регистрация аккаунта   !!!  FLAKY TEST  !!!
 
 #1. Откройте http://practice.automationtesting.in/
 driver.get("http://practice.automationtesting.in/")
@@ -37,8 +37,7 @@ driver.find_element_by_css_selector(f"{reg_btn_selector}").click()
 
 
 
-#TC-10
-#логин в систему
+#TC-10 #логин в систему
 #Для теста логина потребуется предварительно выйти из системы
 driver.get("http://practice.automationtesting.in/my-account/customer-logout/")
 
@@ -63,6 +62,8 @@ logout_link = driver.find_element_by_link_text("Logout")
 assert logout_link.get_attribute("href") == "http://practice.automationtesting.in/my-account/customer-logout/"
 
 
+
+print(f"{email} {password}")
 
 #ending the tests
 sleep(3)

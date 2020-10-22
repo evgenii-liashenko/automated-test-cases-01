@@ -1,17 +1,3 @@
-#TC-8
-'''
-Home: добавление комментария
-1. Откройте http://practice.automationtesting.in/
-2. Проскролльте страницу вниз на 600 пикселей
-3. Нажмите на название книги "Selenium Ruby" или на кнопку "READ MORE"
-4. Нажмите на вкладку "REVIEWS"
-5. Поставьте 5 звёзд
-6. Заполните поле "Review" сообщением: "Nice book!"
-7. Заполните поле "Name"
-8. Заполните "Email"
-9. Нажмите на кнопку "SUBMIT"
-'''
-
 #Setting up webdriver and libraries
 from selenium import webdriver
 driver = webdriver.Chrome()
@@ -24,6 +10,8 @@ from selenium.webdriver.support import expected_conditions as EC
 wait = WebDriverWait(driver, 10)
 
 
+
+#TC-8 добавление комментария
 #1. Откройте http://practice.automationtesting.in/
 driver.get("http://practice.automationtesting.in/")
 
@@ -50,6 +38,8 @@ driver.find_element_by_id("email").send_keys("janedoe@company.com")
 
 #9. Нажмите на кнопку "SUBMIT"
 driver.find_element_by_id("submit").click()
+
+
 
 #ending the test
 sleep(4)

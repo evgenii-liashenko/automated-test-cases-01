@@ -1,26 +1,75 @@
-#TC-1
-'''
-отображение страницы товара
-1. Откройте http://practice.automationtesting.in/
-2. Залогиньтесь
-3. Нажмите на вкладку "Shop"
-4. Откройте книгу "HTML 5 Forms"
-5. Добавьте тест, что заголовок книги назвается: "HTML5 Forms"
-'''
+#Setting up webdriver and libraries
+from selenium import webdriver
+driver = webdriver.Chrome()
+driver.maximize_window()
+from selenium.webdriver.support.ui import WebDriverWait
+driver.implicitly_wait(5)
+from time import sleep
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+wait = WebDriverWait(driver, 10)
 
 
-#TC-2
-'''
-количество товаров в категории
-1. Откройте http://practice.automationtesting.in/
-2. Залогиньтесь
-3. Нажмите на вкладку "Shop"
-4. Откройте категорию "HTML"
-5. Добавьте тест, что отображается три товара
-'''
+
+'''*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-'''
+#user credentials
+email = 'johndoe9029@company.net'
+password = 'qpqpqpqpqp56'
+'''*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-'''
+
+
+
+#TC-1 #отображение страницы товара
+
+#1. Откройте http://practice.automationtesting.in/
+driver.get("http://practice.automationtesting.in/")
+
+#2. Залогиньтесь
+driver.find_element_by_css_selector("#menu-item-50>a").click()
+driver.find_element_by_id("username").send_keys(f"{email}")
+driver.find_element_by_id("password").send_keys(f"{password}")
+driver.find_element_by_css_selector("form.login>p>input[name='login']").click()
+
+#3. Нажмите на вкладку "Shop"
+driver.find_element_by_css_selector("#menu-item-40>a").click()
+
+#4. Откройте книгу "HTML 5 Forms"
+driver.find_element_by_css_selector("#content>ul.products>li.post-181>a.woocommerce-LoopProduct-link").click()
+
+#5. Добавьте тест, что заголовок книги назвается: "HTML5 Forms"
+book_header = driver.find_element_by_css_selector("div#product-181>div.summary>h1.product_title")
+assert book_header.text == "HTML5 Forms"
+
+
+
+#TC-2 #количество товаров в категории
+#Для данного теста потребуется предварительно выйти из системы
+driver.get("http://practice.automationtesting.in/my-account/customer-logout/")
+
+#1. Откройте http://practice.automationtesting.in/
+driver.get("http://practice.automationtesting.in/")
+
+#2. Залогиньтесь
+driver.find_element_by_css_selector("#menu-item-50>a").click()
+driver.find_element_by_id("username").send_keys(f"{email}")
+driver.find_element_by_id("password").send_keys(f"{password}")
+driver.find_element_by_css_selector("form.login>p>input[name='login']").click()
+
+#3. Нажмите на вкладку "Shop"
+driver.find_element_by_css_selector("#menu-item-40>a").click()
+
+#4. Откройте категорию "HTML"
+driver.find_element_by_css_selector("#woocommerce_product_categories-2>ul.product-categories>li.cat-item-19>a").click()
+
+#5. Добавьте тест, что отображается три товара
+book_elements = driver.find_elements_by_class_name("woocommerce-LoopProduct-link")
+assert len(book_elements) == 3
+
 
 
 #TC-3
+#Для данного теста потребуется предварительно выйти из системы
+driver.get("http://practice.automationtesting.in/my-account/customer-logout/")
 '''
 сортировка товаров
 1. Откройте http://practice.automationtesting.in/
@@ -35,7 +84,10 @@
 '''
 
 
+
 #TC-4
+#Для данного теста потребуется предварительно выйти из системы
+driver.get("http://practice.automationtesting.in/my-account/customer-logout/")
 '''
 1. Откройте http://practice.automationtesting.in/
 2. Залогиньтесь
@@ -50,7 +102,10 @@
 '''
 
 
+
 #TC-5
+#Для данного теста потребуется предварительно выйти из системы
+driver.get("http://practice.automationtesting.in/my-account/customer-logout/")
 '''
 проверка цены в корзине
 1. Откройте http://practice.automationtesting.in/ # в этом тесте логиниться не нужно
@@ -62,6 +117,7 @@
 6. Используя явное ожидание, проверьте что в Subtotal отобразилась стоимость
 7. Используя явное ожидание, проверьте что в Subtotal отобразилась стоимость
 '''
+
 
 
 #TC-6
@@ -87,6 +143,7 @@
 '''
 
 
+
 #TC-7
 '''
 покупка товара
@@ -106,3 +163,8 @@
 9. Используя явное ожидание, проверьте что отображается надпись "Thank you. Your order has been received."
 10. Используя явное ожидание, проверьте что в Payment Method отображается текст "Check Payments"
 '''
+
+
+#ending the tests
+sleep(3)
+driver.quit()
