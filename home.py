@@ -52,5 +52,5 @@ driver.find_element_by_id("email").send_keys("janedoe@company.com")
 driver.find_element_by_id("submit").click()
 
 #ending the test
-sleep(8)
+sleep(4)
 driver.quit()
