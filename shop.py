@@ -8,7 +8,7 @@ from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 wait = WebDriverWait(driver, 10)
-
+from selenium.webdriver.support.select import Select
 
 
 '''*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-'''
@@ -67,39 +67,67 @@ assert len(book_elements) == 3
 
 
 
-#TC-3
+#TC-3 #сортировка товаров
 #Для данного теста потребуется предварительно выйти из системы
 driver.get("http://practice.automationtesting.in/my-account/customer-logout/")
-'''
-сортировка товаров
-1. Откройте http://practice.automationtesting.in/
-2. Залогиньтесь
-3. Нажмите на вкладку "Shop"
-4. Добавьте тест, что в селекторе выбран вариант сортировки от большего к меньшему
-• Используйте проверку по value
-5. Отсортируйте товары от большего к меньшему • в селекторах используйте класс Select
-6. Снова объявите переменную с локатором основного селектора сортировки # т.к после сортировки страница обновится
-7. Добавьте тест, что в селекторе выбран вариант сортировки от большего к меньшему
-• Используйте проверку по value
-'''
+#1. Откройте http://practice.automationtesting.in/
+driver.get("http://practice.automationtesting.in/")
+
+#2. Залогиньтесь
+driver.find_element_by_css_selector("#menu-item-50>a").click()
+driver.find_element_by_id("username").send_keys(f"{email}")
+driver.find_element_by_id("password").send_keys(f"{password}")
+driver.find_element_by_css_selector("form.login>p>input[name='login']").click()
+
+#3. Нажмите на вкладку "Shop"
+driver.find_element_by_css_selector("#menu-item-40>a").click()
+
+#4. Добавьте тест, что в селекторе выбран вариант сортировки от большего к меньшему #• Используйте проверку по value
+sorting_dropdown = driver.find_element_by_css_selector("#content>form.woocommerce-ordering>select")
+if sorting_dropdown.get_attribute("value") == 'price-desc':
+    print(f"[Проверка пройдена] Выбрана сортировка по уменьшению цены")
+else:
+    print("[ОШИБКА] Выбранный вариант сортировки не соответствует требуемому")
+
+#5. Отсортируйте товары от большего к меньшему • в селекторах используйте класс Select
+Select(sorting_dropdown).select_by_visible_text("Sort by price: high to low")
+
+#6. Снова объявите переменную с локатором основного селектора сортировки # т.к после сортировки страница обновится
+sorting_dropdown = driver.find_element_by_css_selector("#content>form.woocommerce-ordering>select")
+
+#7. Добавьте тест, что в селекторе выбран вариант сортировки от большего к меньшему #• Используйте проверку по value
+assert sorting_dropdown.get_attribute("value") == "price-desc"
 
 
 
 #TC-4
 #Для данного теста потребуется предварительно выйти из системы
 driver.get("http://practice.automationtesting.in/my-account/customer-logout/")
-'''
-1. Откройте http://practice.automationtesting.in/
-2. Залогиньтесь
-3. Нажмите на вкладку "Shop"
-4. Откройте книгу "Android Quick Start Guide"
-5. Добавьте тест, что содержимое старой цены = "₹600.00"
-6. Добавьте тест, что содержимое новой цены = "₹450.00"
-# используйте assert # используйте assert
- 7. Добавьте явное ожидание и нажмите на обложку книги
-• Подберите такой селектор и тайминги, чтобы открылось окно предпросмотра картинки (не вся картинка на всю страницу)
-8. Добавьте явное ожидание и закройте предпросмотр нажав на крестик (кнопка вверху справа)
-'''
+
+#1. Откройте http://practice.automationtesting.in/
+driver.get("http://practice.automationtesting.in/")
+
+#2. Залогиньтесь
+driver.find_element_by_css_selector("#menu-item-50>a").click()
+driver.find_element_by_id("username").send_keys(f"{email}")
+driver.find_element_by_id("password").send_keys(f"{password}")
+driver.find_element_by_css_selector("form.login>p>input[name='login']").click()
+
+#3. Нажмите на вкладку "Shop"
+driver.find_element_by_css_selector("#menu-item-40>a").click()
+
+#4. Откройте книгу "Android Quick Start Guide"
+
+#5. Добавьте тест, что содержимое старой цены = "₹600.00"
+
+#6. Добавьте тест, что содержимое новой цены = "₹450.00" # используйте assert # используйте assert
+
+#7. Добавьте явное ожидание и нажмите на обложку книги
+#• Подберите такой селектор и тайминги, чтобы открылось окно предпросмотра картинки (не вся картинка на всю страницу)
+
+#8. Добавьте явное ожидание и закройте предпросмотр нажав на крестик (кнопка вверху справа)
+
+
 
 
 
