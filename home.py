@@ -5,13 +5,12 @@ driver.maximize_window()
 from selenium.webdriver.support.ui import WebDriverWait
 driver.implicitly_wait(5)
 from time import sleep
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 wait = WebDriverWait(driver, 10)
 
 
 
 #TC-8 добавление комментария
+
 #1. Откройте http://practice.automationtesting.in/
 driver.get("http://practice.automationtesting.in/")
 
@@ -42,5 +41,5 @@ driver.find_element_by_id("submit").click()
 
 
 #ending the test
-sleep(4)
+sleep(2)
 driver.quit()

@@ -38,7 +38,7 @@ driver.find_element_by_css_selector(f"{reg_btn_selector}").click()
 
 
 #TC-10 #логин в систему
-#Для теста логина потребуется предварительно выйти из системы
+'''Для теста логина потребуется предварительно выйти из системы'''
 driver.get("http://practice.automationtesting.in/my-account/customer-logout/")
 
 #1. Откройте http://practice.automationtesting.in/

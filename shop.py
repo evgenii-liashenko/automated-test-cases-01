@@ -11,6 +11,7 @@ wait = WebDriverWait(driver, 10)
 from selenium.webdriver.support.select import Select
 
 
+
 '''*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-'''
 #user credentials
 email = 'johndoe9029@company.net'
@@ -43,7 +44,8 @@ assert book_header.text == "HTML5 Forms"
 
 
 #TC-2 #количество товаров в категории
-#Для данного теста потребуется предварительно выйти из системы
+
+'''Для теста потребуется предварительно выйти из системы'''
 driver.get("http://practice.automationtesting.in/my-account/customer-logout/")
 
 #1. Откройте http://practice.automationtesting.in/
@@ -68,8 +70,10 @@ assert len(book_elements) == 3
 
 
 #TC-3 #сортировка товаров
-#Для данного теста потребуется предварительно выйти из системы
+
+'''Для теста потребуется предварительно выйти из системы'''
 driver.get("http://practice.automationtesting.in/my-account/customer-logout/")
+
 #1. Откройте http://practice.automationtesting.in/
 driver.get("http://practice.automationtesting.in/")
 
@@ -100,8 +104,9 @@ assert sorting_dropdown.get_attribute("value") == "price-desc"
 
 
 
-#TC-4
-#Для данного теста потребуется предварительно выйти из системы
+#TC-4 отображение, скидка товара
+
+'''Для теста потребуется предварительно выйти из системы'''
 driver.get("http://practice.automationtesting.in/my-account/customer-logout/")
 
 #1. Откройте http://practice.automationtesting.in/
@@ -138,8 +143,8 @@ driver.find_element_by_css_selector("a.pp_close").click()
 
 
 
-
 #TC-5 проверка цены в корзине
+
 #1. Откройте http://practice.automationtesting.in/ # в этом тесте логиниться не нужно
 driver.get("http://practice.automationtesting.in/")
 
@@ -168,7 +173,7 @@ wait.until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, "td.product-price>
 
 #TC-6 работа в корзине
 #Иногда, даже явные ожидания не помогают избежать ошибки при нахождении элемента, этот сценарий один из таких, используйте time.sleep()
-'''У меня тест проходит и без использования sleep'''
+
 #1. Откройте http://practice.automationtesting.in/ # в этом тесте логиниться не нужно
 driver.get("http://practice.automationtesting.in/")
 
@@ -213,6 +218,7 @@ assert driver.find_element_by_css_selector("ul.woocommerce-error>li").text == "P
 
 
 #TC-7 #покупка товара
+
 #1. Откройте http://practice.automationtesting.in/ # в этом тесте логиниться не нужно
 driver.get("http://practice.automationtesting.in/")
 
